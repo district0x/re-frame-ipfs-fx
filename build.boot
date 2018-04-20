@@ -13,6 +13,8 @@
                  ;; [camel-snake-kebab "0.4.0"]
                  ;;CLJS
                  [org.clojure/clojurescript "1.9.946"]
+                 [re-frame "0.10.5"]
+                 [reagent "0.8.0"]
 
                  ;;DEV
                  [doo "0.1.8" :scope "test"]

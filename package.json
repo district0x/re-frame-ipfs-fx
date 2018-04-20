@@ -1,0 +1,8 @@
+{
+    "dependencies": {
+        "karma": "latest",
+        "karma-chrome-launcher": "latest",
+        "karma-cli": "latest",
+        "karma-cljs-test": "latest"
+    }
+}
