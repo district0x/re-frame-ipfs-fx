@@ -16,21 +16,18 @@
 (reg-fx
  :ipfs/init
  (fn ipfs-init [config]
-   (info "IPFS INIT")
    (ipfs-core/init-ipfs (or config {}))))
 
 (reg-fx
  :ipfs/call
  (fn [{:keys [:inst :func :args :on-success :on-error]}]
-   (info "CALLING IPFS" func args)
-   ;; (ac nil nil nil {:callback (fn [] )})
    (ipfs-utils/api-call (or inst @ipfs-core/*ipfs-instance*)
                         func
                         args
                         (if (or on-success on-error)
                           {:callback (fn [err data]
-                                       (info "GOT CB" err data)
-                                       (info "ROUTING TO" on-success on-error)
+                                       ;; (info "GOT CB" err data)
+                                       ;; (info "ROUTING TO" on-success on-error)
                                        (if err
                                          (when on-error
                                            (dispatch (vec (concat (if (sequential? on-error)

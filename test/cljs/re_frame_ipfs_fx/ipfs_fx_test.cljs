@@ -26,7 +26,7 @@
  ::on-list-files-success
  interceptors
  (fn [{:keys [:db]} [data]]
-   (info "GOT FILES" data)
+   ;; (info "GOT FILES" data)
    {:db (assoc db :files data)}))
 
 (reg-event-fx
@@ -44,11 +44,26 @@
                 :on-success ::on-list-files-success
                 :on-error ::error}}))
 
+(reg-event-fx
+ ::on-file-added
+ interceptors
+ (fn [{:keys [:db]} [data]]
+   {:db (assoc db :file-added data)}))
+
+(reg-event-fx
+ ::add-file
+ interceptors
+ (fn [_ [data]]
+   {:ipfs/call {:func "add"
+                :args [data]
+                :on-success ::on-file-added
+                :on-error ::error}}))
 
 (reg-sub ::files (fn [db] (:files db)))
+(reg-sub ::file-added (fn [db] (:file-added db)))
 (reg-sub ::last-error (fn [db] (:last-error db)))
 
-(deftest ether-tests
+(deftest ls-files
   (run-test-async
     (let [files (subscribe [::files])]
       (dispatch [::init-ipfs])
@@ -80,5 +95,12 @@
                                {:Name "security-notes",
                                 :Hash "QmTumTjvcYCAvRRwQ8sDRxh8ezmrcr88YFU7iYNroGGTBZ",
                                 :Size 1027,
-                                :Type 2}]}]}))
-                ))))
+                                :Type 2}]}]}))))))
+
+(deftest upload-files
+  (run-test-async
+    (let [fadded (subscribe [::file-added])]
+      (dispatch [::init-ipfs])
+      (dispatch [::add-file (js/Blob. ["test data"])])
+      (wait-for [::on-file-added ::error]
+                (is (= @fadded {:Name "blob", :Hash "QmWmsL95CYvci8JiortAMhezezr8BhAwAVohVUSJBcZcBL", :Size "17"}))))))

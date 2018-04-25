@@ -119,9 +119,10 @@
   (comp
    (testing)
    (cljs-env)
-   (watch)
+   ;; (watch)
    (test-cljs
     :js-env :chrome-headless
+    :exit?  false
     ;; :verbosity 3
     ;; :doo-opts {}
     ;; :js-env :chrome
