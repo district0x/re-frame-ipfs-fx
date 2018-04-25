@@ -21,6 +21,7 @@
                  [adzerk/bootlaces    "0.1.13" :scope "test"]
                  [samestep/boot-refresh "0.1.0" :scope "test"]
                  [adzerk/boot-cljs          "2.1.4"  :scope "test"];;:exclusions [org.clojure/clojurescript]
+                 [day8.re-frame/test "0.1.5" :scope "test"]
                  [adzerk/boot-cljs-repl     "0.3.3"      :scope "test"]
                  [adzerk/boot-reload        "0.5.2"      :scope "test"]
                  [com.cemerick/piggieback   "0.2.1"      :scope "test"]
@@ -100,7 +101,7 @@
 ;;; This prevents a name collision WARNING between the test task and
 ;;; clojure.core/test, a function that nobody really uses or cares
 ;;; about.
-(ns-unmap 'boot.user 'test)
+;; (ns-unmap 'boot.user 'test)
 
 (deftask test []
   (comp (testing)
@@ -112,16 +113,22 @@
   (comp (testing)
      (watch)
      (cljs-env)
-     (test-cljs :js-env :node
-                ;;:phantom
-                )))
+     (test-cljs :js-env :slimer)))
 
 (deftask auto-test-chrome []
-  (comp (testing)
-     (watch)
-     (cljs-env)
-     (test-cljs :js-env :chrome-headless;;:phantom
-                )))
+  (comp
+   (testing)
+   (cljs-env)
+   (watch)
+   (test-cljs
+    :js-env :chrome-headless
+    ;; :verbosity 3
+    ;; :doo-opts {}
+    ;; :js-env :chrome
+    ;; :js-env :phantom
+    )
+   ;; (test)
+   ))
 
 (task-options!
  ;; sift {:include #{#"\.jar$"}}
