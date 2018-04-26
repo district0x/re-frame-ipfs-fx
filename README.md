@@ -8,7 +8,7 @@ ReFrame handlers for [IPFS library](https://github.com/district0x/cljs-ipfs-nati
 ## Installation
 ```clojure
 ;; Add to dependencies
-[district0x/re-frame-ipfs-fx "0.0.1"]
+[district0x/re-frame-ipfs-fx "0.0.2"]
 ```
 ```clojure
 (ns my.app.handlers
