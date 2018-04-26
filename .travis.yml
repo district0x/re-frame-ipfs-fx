@@ -9,7 +9,6 @@ install:
 env:
   matrix:
     # Runs tests twice, using Clj 1.7 and 1.8
-    - BOOT_CLOJURE_VERSION=1.9.0
     - BOOT_CLOJURE_VERSION=1.8.0
 jdk:
   - oraclejdk8
