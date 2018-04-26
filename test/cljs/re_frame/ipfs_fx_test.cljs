@@ -1,8 +1,8 @@
-(ns re-frame-ipfs-fx.ipfs-fx-test
+(ns re-frame.ipfs-fx-test
   (:require
    [cljs.test :refer [deftest testing is async]]
    [cljs.test :as t]
-   [district0x.re-frame-ipfs-fx.ipfs-fx :as core]
+   [district0x.re-frame.ipfs-fx :as core]
    [day8.re-frame.test :refer [run-test-async wait-for run-test-sync]]
    [re-frame.core :refer [reg-event-fx console dispatch trim-v reg-sub subscribe]]
    [taoensso.timbre :as timbre :refer-macros [log
@@ -41,8 +41,8 @@
  (fn [_ [url]]
    {:ipfs/call {:func "ls"
                 :args [url]
-                :on-success ::on-list-files-success
-                :on-error ::error}}))
+                :on-success [::on-list-files-success]
+                :on-error [::error]}}))
 
 (reg-event-fx
  ::on-file-added
@@ -56,8 +56,8 @@
  (fn [_ [data]]
    {:ipfs/call {:func "add"
                 :args [data]
-                :on-success ::on-file-added
-                :on-error ::error}}))
+                :on-success [::on-file-added]
+                :on-error [::error]}}))
 
 (reg-sub ::files (fn [db] (:files db)))
 (reg-sub ::file-added (fn [db] (:file-added db)))

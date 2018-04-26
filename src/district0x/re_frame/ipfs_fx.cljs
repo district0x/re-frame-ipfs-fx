@@ -1,4 +1,4 @@
-(ns district0x.re-frame-ipfs-fx.ipfs-fx
+(ns district0x.re-frame.ipfs-fx
   (:require
    [cljs-ipfs-api.core :as ipfs-core]
    [cljs-ipfs-api.utils :as ipfs-utils]
@@ -30,11 +30,7 @@
                                        ;; (info "ROUTING TO" on-success on-error)
                                        (if err
                                          (when on-error
-                                           (dispatch (vec (concat (if (sequential? on-error)
-                                                                    on-error
-                                                                    [on-error]) [err]))))
+                                           (dispatch (vec (concat on-error [err]))))
                                          (when on-success
-                                           (dispatch (vec (concat (if (sequential? on-success)
-                                                                    on-success
-                                                                    [on-success]) [data]))))))}
+                                           (dispatch (vec (concat on-success [data]))))))}
                           {}))))

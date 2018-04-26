@@ -27,8 +27,8 @@ The library relies on HTTP API signatures, so follow this [docs](https://github.
 (reg-event-fx
 ::init-ipfs
 interceptors
-(fn [_ [url]]
-  {:ipfs/init nil}))                                                                     
+(fn [_ [config]]
+  {:ipfs/init config}))                                                                     
 
 (reg-event-fx
 ::list-files
@@ -47,5 +47,9 @@ interceptors
 ;;And then
 
 (dispatch [::init-ipfs])
+;;or
+(dispatch [::init-ipfs {:host "http://127.0.0.1:5001" :endpoint "/api/v0"}])
+;;if you want to override defaults
+
 (dispatch [::list-files "/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/"])
 ```
