@@ -106,7 +106,7 @@
 (deftask test []
   (comp (testing)
      (cljs-env)
-     (test-cljs :js-env :chrome;;:phantom
+     (test-cljs :js-env :slimer;;:phantom
                 :exit?  true)))
 
 (deftask auto-test []
