@@ -138,7 +138,7 @@
  ;;       :ensure-clean   true
  ;;       :ensure-tag     (last-commit)
  ;;       :ensure-version +version+}
- pom  {:project     'district0x/cljs-ipfs-native
+ pom  {:project     'district0x/re-frame-ipfs-fx
        :version     +version+
        :description "IPFS Re-Frame handlers."
        :url         "https://github.com/district0x/re-frame-ipfs-fx"
