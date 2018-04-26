@@ -22,27 +22,30 @@ The library relies on HTTP API signatures, so follow this [docs](https://github.
 
 ### Example call
 ```clojure
-  (reg-event-fx
-  ::init-ipfs
-  interceptors
-  (fn [_ [url]]
-    {:ipfs/init nil}))                                                                     
-   
-  (reg-event-fx
-  ::list-files
-  interceptors
-  (fn [_ [url]]
-    {:ipfs/call {:func "ls"
-                :args [url]
-                :on-success ::on-list-files-success
-                :on-error ::error}}))  
-  (reg-event-fx
-  ::on-list-files-success
-  interceptors
-  (fn [{:keys [:db]} [data]]
-    {:db (assoc db :files data)}))
+;;Setup your handlers
+
+(reg-event-fx
+::init-ipfs
+interceptors
+(fn [_ [url]]
+  {:ipfs/init nil}))                                                                     
+
+(reg-event-fx
+::list-files
+interceptors
+(fn [_ [url]]
+  {:ipfs/call {:func "ls"
+              :args [url]
+              :on-success ::on-list-files-success
+              :on-error ::error}}))  
+(reg-event-fx
+::on-list-files-success
+interceptors
+(fn [{:keys [:db]} [data]]
+  {:db (assoc db :files data)}))
     
 ;;And then
-  (dispatch [::init-ipfs])
-  (dispatch [::list-files "/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/"])
+
+(dispatch [::init-ipfs])
+(dispatch [::list-files "/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/"])
 ```
