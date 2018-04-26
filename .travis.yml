@@ -20,8 +20,8 @@ cache:
   - $HOME/bin
 before_install:
  - sudo apt-get --yes install wget nodejs npm
- - sudo npm install slimerjs -g 
  - sudo npm config set strict-ssl false
+ - sudo npm install slimerjs -g 
 before_script:
   - "echo 'Getting ipfs-update'"
   - wget https://dist.ipfs.io/ipfs-update/v1.5.2/ipfs-update_v1.5.2_linux-amd64.tar.gz -O ipfs-update.tar.gz
