@@ -1,11 +1,13 @@
 language: java
-script: boot test
+script: boot test-chrome-once
 install:
   - mkdir -p ~/bin
   - export PATH=~/bin:$PATH
   # Could use `latest` tag instead of version number
   - curl -L https://github.com/boot-clj/boot-bin/releases/download/2.7.2/boot.sh -o ~/bin/boot
   - chmod +x ~/bin/boot
+addons:
+  chrome: stable
 env:
   matrix:
     # Runs tests twice, using Clj 1.7 and 1.8
@@ -20,9 +22,11 @@ cache:
   - $HOME/bin
 before_install:
  - sudo apt-get --yes install wget nodejs npm
- - sudo npm config set strict-ssl false
- - sudo npm install slimerjs -g 
+ # - sudo npm config set strict-ssl false
+ # - sudo npm install slimerjs -g 
 before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
   - "echo 'Getting ipfs-update'"
   - wget https://dist.ipfs.io/ipfs-update/v1.5.2/ipfs-update_v1.5.2_linux-amd64.tar.gz -O ipfs-update.tar.gz
   - "echo 'Extracting'"

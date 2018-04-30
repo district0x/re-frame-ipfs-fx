@@ -32,12 +32,14 @@
                  [powerlaces/boot-cljs-devtools "0.2.0" :scope "test"]
                  [binaryage/devtools "0.9.4"]
                  [boot-codox "0.10.3" :scope "test"]
+                 [adzerk/boot-test            "1.2.0"]
                  ])
 
   (def +version+ "0.0.2")
 
 (require
  '[samestep.boot-refresh :refer [refresh]]
+ '[adzerk.boot-test      :refer :all]
  '[adzerk.boot-cljs      :refer [cljs]]
  '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
  '[adzerk.boot-reload    :refer [reload]]
@@ -103,7 +105,7 @@
 ;;; about.
 ;; (ns-unmap 'boot.user 'test)
 
-(deftask test []
+(deftask tst []
   (comp (testing)
      (cljs-env)
      (test-cljs :js-env :slimer;;:phantom
@@ -115,19 +117,19 @@
      (cljs-env)
      (test-cljs :js-env :slimer)))
 
-(deftask auto-test-chrome []
+(deftask test-chrome-once []
   (comp
    (testing)
    (cljs-env)
-   ;; (watch)
    (test-cljs
     :js-env :chrome-headless
-    :exit?  false
+    :exit? true
     ;; :verbosity 3
     ;; :doo-opts {}
     ;; :js-env :chrome
     ;; :js-env :phantom
     )
+   (test)
    ;; (test)
    ))
 
