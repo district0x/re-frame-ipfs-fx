@@ -97,7 +97,8 @@
 (deftask testing []
   (set-env! :source-paths #(conj % "test/cljs"))
   (task-options! test-cljs {:doo-opts
-                            {:paths {:karma "node_modules/karma-cli/bin/karma"}}})
+                            {:paths {:karma "karma"}
+                             :exec-dir "./node_modules/karma/bin/"}})
   identity)
 
 ;;; This prevents a name collision WARNING between the test task and
