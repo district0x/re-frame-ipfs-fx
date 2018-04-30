@@ -21,9 +21,9 @@ cache:
   - $HOME/.boot/cache/lib
   - $HOME/bin
 before_install:
- - sudo apt-get --yes install wget nodejs npm
- # - sudo npm config set strict-ssl false
- # - sudo npm install slimerjs -g 
+  - sudo apt-get --yes install wget nodejs npm
+  # - sudo npm config set strict-ssl false
+  - sudo npm install -g karma-cli 
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
