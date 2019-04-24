@@ -36,8 +36,8 @@ interceptors
 (fn [_ [url]]
   {:ipfs/call {:func "ls"
                :args [url]
-               :on-success ::on-list-files-success
-               :on-error ::error}}))  
+               :on-success [::on-list-files-success]
+               :on-error [::error]}}))  
                
 (reg-event-fx
 ::on-list-files-success
