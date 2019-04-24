@@ -33,7 +33,7 @@
                  [boot-codox "0.10.3" :scope "test"]
                  [adzerk/boot-test            "1.2.0"]])
 
-  (def +version+ "0.0.2")
+  (def +version+ "1.0.0")
 
 (require
  '[samestep.boot-refresh :refer [refresh]]
