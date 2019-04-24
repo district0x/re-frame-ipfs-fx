@@ -8,13 +8,12 @@
                  ;; [mount "0.1.11"]
                  ;; [org.clojure/core.async "0.3.443"]
                  ;;IPFS
-                 [district0x/cljs-ipfs-native "1.0.0"]
+                 [district0x/cljs-ipfs-native "1.0.1"]
                  ;;DATA
                  ;; [camel-snake-kebab "0.4.0"]
                  ;;CLJS
                  [org.clojure/clojurescript "1.9.946"]
                  [re-frame "0.10.5"]
-                 [reagent "0.8.0"]
 
                  ;;DEV
                  [doo "0.1.8" :scope "test"]
@@ -32,8 +31,7 @@
                  [powerlaces/boot-cljs-devtools "0.2.0" :scope "test"]
                  [binaryage/devtools "0.9.4"]
                  [boot-codox "0.10.3" :scope "test"]
-                 [adzerk/boot-test            "1.2.0"]
-                 ])
+                 [adzerk/boot-test            "1.2.0"]])
 
   (def +version+ "0.0.2")
 
@@ -54,8 +52,8 @@
 
 (task-options!
  codox {:version +version+
-        :description "IPFS re-frame effectful handlers"
-        :name "IPFS re-frame handlers"
+        :description "A re-frame effects handlers for working with IPFS"
+        :name "re-frame-ipfs-fx"
         :language :clojurescript})
 
 (deftask cljs-env []
@@ -141,9 +139,9 @@
  ;;       :ensure-clean   true
  ;;       :ensure-tag     (last-commit)
  ;;       :ensure-version +version+}
- pom  {:project     'district0x/re-frame-ipfs-fx
+ pom  {:project     'district0x.re-frame/ipfs-fx
        :version     +version+
-       :description "IPFS Re-Frame handlers."
+       :description "A re-frame effects handlers for working with IPFS"
        :url         "https://github.com/district0x/re-frame-ipfs-fx"
        :scm         {:url "https://github.com/district0x/re-frame-ipfs-fx"}
        :license     {"EPL" "http://www.eclipse.org/legal/epl-v10.html"}})
