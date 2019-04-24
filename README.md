@@ -1,8 +1,6 @@
-# IPFS Re-Frame Effectful Event Handlers
+# re-frame-ipfs-fx
 
 [![Build Status](https://travis-ci.org/district0x/re-frame-ipfs-fx.svg?branch=master)](https://travis-ci.org/district0x/re-frame-ipfs-fx)
-
-ReFrame handlers for  
 
 [re-frame](https://github.com/Day8/re-frame) [Effectful Handlers](https://github.com/Day8/re-frame/blob/develop/docs/EffectfulHandlers.md) to work with [IPFS](https://ipfs.io/) network's [JS HTTP Client](https://github.com/ipfs/js-ipfs-http-client), using [cljs-ipfs](https://github.com/district0x/cljs-ipfs-native)
 
