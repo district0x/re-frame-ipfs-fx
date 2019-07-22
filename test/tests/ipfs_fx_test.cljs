@@ -16,18 +16,12 @@
  ::error
  interceptors
  (fn [{:keys [:db]} [data]]
-
-   (prn "@@@ ERROR" data)
-
    {:db (assoc db :last-error data)}))
 
 (re-frame/reg-event-fx
  ::on-list-files-success
  interceptors
  (fn [{:keys [:db]} [data]]
-
-   (prn "@@@ LIST-FILES-SUCCESS" data)
-
    {:db (assoc db :files data)}))
 
 (re-frame/reg-event-fx
@@ -49,9 +43,6 @@
  ::on-file-added
  interceptors
  (fn [{:keys [:db]} [data]]
-
-   (prn "@@@ ON-FILE-ADDED" data)
-
    {:db (assoc db :file-added data)}))
 
 (re-frame/reg-event-fx
