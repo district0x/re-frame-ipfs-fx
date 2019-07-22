@@ -1,19 +1,14 @@
 dist: xenial
 language: clojure
-node_js:
-- '11'
-script: lein doo node "tests" once
+script: lein doo chrome "tests" once
 notifications:
   slack:
     on_success: always
     on_failure: always
     rooms:
     - district0x:53vhalUfg0MitsQwzjP5PWdd#travis-ci
-before_install:
-- nvm use 11.0.0
 before_script:
-- wget https://dist.ipfs.io/ipfs-update/v1.5.2/ipfs-update_v1.5.2_linux-amd64.tar.gz
-  -O ipfs-update.tar.gz
+- wget https://dist.ipfs.io/ipfs-update/v1.5.2/ipfs-update_v1.5.2_linux-amd64.tar.gz -O ipfs-update.tar.gz
 - tar -xzf ipfs-update.tar.gz
 - ipfs-update/ipfs-update install latest
 - ipfs init
