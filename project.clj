@@ -8,11 +8,7 @@
                  [re-frame "0.10.8"]]
 
   :doo {:build "tests"
-        :paths {:karma "./node_modules/karma/bin/karma"}
-        :karma {:launchers {:chrome-no-security {:plugin "karma-chrome-launcher" :name "Chrome_no_security"}}
-                :config {"customLaunchers"
-                         {"Chrome_no_security" {"base" "Chrome"
-                                                "flags" ["--disable-web-security"]}}}}}
+        :paths {:karma "./node_modules/karma/bin/karma"}}
 
   :npm {:devDependencies [karma "2.0.0"
                           karma-es6-shim "1.0.0"

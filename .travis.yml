@@ -2,7 +2,7 @@ dist: trusty
 language: clojure
 node_js:
   - "11"
-script: lein doo chrome-no-security "tests" once
+script: lein doo chrome "tests" once
 addons:
   chrome: stable
 notifications:
