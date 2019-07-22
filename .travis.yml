@@ -1,4 +1,4 @@
-dist: xenial
+dist: trusty
 language: clojure
 node_js:
   - "11"
@@ -16,6 +16,7 @@ before_install:
   - nvm use 11.0.0
 before_script:
 - export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 - wget https://dist.ipfs.io/ipfs-update/v1.5.2/ipfs-update_v1.5.2_linux-amd64.tar.gz -O ipfs-update.tar.gz
 - tar -xzf ipfs-update.tar.gz
 - ipfs-update/ipfs-update install latest
