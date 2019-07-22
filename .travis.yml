@@ -15,13 +15,13 @@ notifications:
 before_install:
   - nvm install 11.0.0
 before_script:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
 - wget https://dist.ipfs.io/ipfs-update/v1.5.2/ipfs-update_v1.5.2_linux-amd64.tar.gz -O ipfs-update.tar.gz
 - tar -xzf ipfs-update.tar.gz
 - ipfs-update/ipfs-update install latest
 - ipfs init
 - ipfs daemon & #> /dev/null &
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 env:
   global:
   - secure: SmHkohgSEyLICpgBs4H9PrHwf5idWAvbEbQ7hRfdImgPRnCf2NroKIAX2saXHHW7Ncw0K3pix+U0x/Ljis0YDaGLlY+NlfXZ6/gEv0ENseJfc6QkDU2Opi4ecG19O8pB7jglUKUHUbDxJy8udProOVmbFf14uOZ/RJ6bjKiqAP806givBJiHyST16SEzpHRIuGd7WRfMC9YejSVc+Lu+BXfVIOsvBELgV6ug5CL/aClkZHNpJgXVuB4a5/whJducF1hHOZhDcC/aXfNq9LnF+5ACr9enk72Y4h6DHI8Ddi6OZSIIe8rK6ZNXAxleth9mpGHUuGsnJfaHfaQlnOJoqYjsU5bE4Y6BbRUBSA9Dk4xhJ/sXsNKGuU3XY7yaBgjaLZJMgQEVofwGByKtVYPXSPa5Zall/qFafxG7pAmfuXikBy3qz78JoltjyAc9ZwzPiH3mKyDni+95LggX0H7Y/h6iWfw4Gs2J6uT0vC+Xzg3d1lRdxXYynQlGW3+VPOTCnHHdmtzTPpSmRHAUFSu5OddT3lCgjgmOQQpubhhxu9L+BqrLYzRMhcwv+aE/NUN3JM4Pgm3OROup1J7ccDo703+bi4QiXtENutcGHv7MfvxjyAUdlsO9fE98GaLICFgf1AGPYns4ArRbDJRotpK04Z69wSXekzZPK6YigfWagOg=
