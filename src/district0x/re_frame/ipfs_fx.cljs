@@ -2,26 +2,24 @@
   (:require
    [cljs-ipfs-api.core :as ipfs-core]
    [cljs-ipfs-api.utils :as ipfs-utils]
-   [re-frame.core :refer [reg-fx dispatch console reg-event-db reg-event-fx]]))
+   [re-frame.core :as re-frame]))
 
-
-(reg-fx
+(re-frame/reg-fx
  :ipfs/init
  (fn ipfs-init [config]
    (ipfs-core/init-ipfs (or config {}))))
 
-
-(reg-fx
+(re-frame/reg-fx
  :ipfs/call
- (fn [{:keys [:inst :func :args :on-success :on-error]}]
+ (fn [{:keys [:inst :func :args :opts :on-success :on-error]}]
    (ipfs-utils/api-call (or inst @ipfs-core/*ipfs-instance*)
                         func
                         args
-                        (if (or on-success on-error)
-                          {:callback (fn [err data]
-                                       (if err
-                                         (when on-error
-                                           (dispatch (vec (concat on-error [err]))))
-                                         (when on-success
-                                           (dispatch (vec (concat on-success [data]))))))}
-                          {}))))
+                        (merge {:options opts}
+                               (when (or on-success on-error)
+                                 {:callback (fn [err data]
+                                              (if err
+                                                (when on-error
+                                                  (re-frame/dispatch (vec (concat on-error [err]))))
+                                                (when on-success
+                                                  (re-frame/dispatch (vec (concat on-success [data]))))))})))))
