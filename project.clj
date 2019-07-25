@@ -1,4 +1,4 @@
-(defproject district0x/re-frame-ipfs-fx "1.1.0-SNAPSHOT"
+(defproject district0x/re-frame-ipfs-fx "1.1.1-SNAPSHOT"
   :description "library for calling ipfs HTTP API"
   :url "https://github.com/district0x/cljs-ipfs-http-client"
   :license {:name "Eclipse Public License"

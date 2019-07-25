@@ -15,7 +15,7 @@
    (ipfs-utils/api-call (or inst @ipfs-core/*ipfs-instance*)
                         func
                         args
-                        (merge {:options opts}
+                        (merge {:opts opts}
                                (when (or on-success on-error)
                                  {:callback (fn [err data]
                                               (if err
