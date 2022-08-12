@@ -1,11 +1,15 @@
 (ns tests.ipfs-fx-test
-  (:require [cljs.test :refer [deftest is]]
+  (:require [cljs.test :refer [deftest is run-tests]]
             [clojure.string :as string]
             [day8.re-frame.test :refer [run-test-async wait-for run-test-sync]]
             [district0x.re-frame.ipfs-fx :as core]
+            ["buffer" :refer [Buffer]]
             [re-frame.core :as re-frame]))
 
 (def interceptors [re-frame/trim-v])
+
+(defn to-buffer [data]
+  (.from Buffer data))
 
 (defn- parse-response [s]
   (-> s
@@ -28,7 +32,7 @@
  ::init-ipfs
  interceptors
  (fn [_ [url]]
-   {:ipfs/init nil}))
+   {:ipfs/init {:host "http://127.0.0.1:5001" :endpoint "/api/v0"}}))
 
 (re-frame/reg-event-fx
  ::list-files
@@ -62,14 +66,14 @@
   (run-test-async
    (let [files (re-frame/subscribe [::files])]
      (re-frame/dispatch [::init-ipfs])
-     (re-frame/dispatch [::list-files "/ipfs/QmTeW79w7QQ6Npa3b1d5tANreCDxF2iDaAPsDvW6KtLmfB/"])
+     (re-frame/dispatch [::list-files "/ipfs/QmTeW79w7QQ6Npa3b1d5tANreCDxF2iDaAPsDvW6KtLmfB"])
      (wait-for [::on-list-files-success ::error]
-       (is (-> (parse-response @files) nil? not))))))
+       (is (-> @files nil? not))))))
 
 (deftest upload-files
   (run-test-async
    (let [fadded (re-frame/subscribe [::file-added])]
      (re-frame/dispatch [::init-ipfs])
-     (re-frame/dispatch [::add-file (js/Blob. ["test data"])])
+     (re-frame/dispatch [::add-file (to-buffer "test data")])
      (wait-for [::on-file-added ::error]
-       (is (-> (parse-response @fadded) nil? not))))))
+       (is (-> @fadded nil? not))))))
