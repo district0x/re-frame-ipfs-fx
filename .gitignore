@@ -16,3 +16,8 @@ pom.xml.asc
 /tests-output/
 /ipfs-fx.iml
 package-lock.json
+out
+yarn-error.log
+.cpcache
+.shadow-cljs
+Session.vim
